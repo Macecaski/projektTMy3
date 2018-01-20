@@ -77,8 +77,8 @@ def mow(tekst):
 
         p.terminate()
     text2speech(tekst)
-    playsound('tts_output.wav')
-    #odtwarzanie('tts_output.wav')
+    #playsound('tts_output.wav')
+    odtwarzanie('tts_output.wav')
     time.sleep(0.1)
 
 #główne funkcje
@@ -107,8 +107,9 @@ def dodaj():
             mow("Podaj nazwe wydarzenia")
             print("Podaj nazwe wydarzenia")
             nazwa = dictation()
-            if nazwa == 'wróć':
-                licznik = 0
+            if nazwa == 'wróć' or nazwa == 'cofnij' or nazwa == 'anuluj':
+                return 0
+
             else:
                 nazwa = nazwa
                 licznik = 1
@@ -120,6 +121,8 @@ def dodaj():
             print(data)
             if data == '7777-77-77':
                 licznik = 0
+            elif data == '9999-99-99':
+                return 0
             else:
                 data = data
                 licznik = 2
@@ -131,6 +134,8 @@ def dodaj():
             print("rozpoczÍcie")
             if rozpoczecie == '90:90:00':
                 licznik = 1
+            elif rozpoczecie == '97:97:00':
+                return 0
             else:
                 if rozpoczecie == "70:70:00":
                     h_poczatek = "00:00:00"
@@ -142,11 +147,13 @@ def dodaj():
                     licznik = 3
 
         if licznik == 3:
-            mow("Podaj date zakoŮczenia wydarzenia ")
-            print("Podaj date zakoŮczenia wydarzenia ")
+            mow("Podaj date zakończenia wydarzenia ")
+            print("Podaj date zakończenia wydarzenia ")
             data_koniec = sarmata("daty")
             if data_koniec == '7777-77-77':
                 licznik = 2
+            elif data_koniec == '9999-99-99':
+                return 0
             else:
                 data_koniec = data_koniec
                 licznik = 4
@@ -157,6 +164,8 @@ def dodaj():
             h_koniec = sarmata("godziny")
             if h_koniec == '90:90:00':
                 licznik = 3
+            elif h_koniec == '97:97:00':
+                return 0
             else:
                 h_koniec = h_koniec
                 licznik = 5
@@ -165,8 +174,10 @@ def dodaj():
             mow("Podaj lokalizacje")
             print("Podaj lokalizacje")
             lokalizacja = dictation()
-            if lokalizacja == "wrůś":
+            if lokalizacja == "wróć":
                 licznik = 4
+            elif lokalizacja == 'anuluj':
+                return 0
             else:
                 lokalizacja = lokalizacja
                 licznik = 6
@@ -175,8 +186,10 @@ def dodaj():
             mow("Podaj opis")
             print("Podaj opis")
             opis = dictation()
-            if opis == 'wrůś':
+            if opis == 'wróć':
                 licznik = 5
+            elif nazwa == 'anuluj':
+                return 0
             else:
                 opis = opis
                 licznik = 7
@@ -190,51 +203,89 @@ def dodaj():
     mow(nazwa)
 
 def usun():
-    mow('Podaj nazwe wydarzenia')
-    print('Podaj nazwe wydarzenia')
-    nazwa = dictation()
-    do_usuniecia = wydarzenie_del(nazwa)
-    odp=del1(do_usuniecia)
-    if odp == 2:
-        mow("Usunełam wydarzenie.")
-        mow(nazwa)
-        mow("Z twojego życia.")
+
+    licznik = 0
+
+    while licznik < 4:
+
+        if licznik == 0:
+            mow('Podaj nazwe wydarzenia')
+            print('Podaj nazwe wydarzenia')
+            nazwa = dictation()
+            if nazwa == 'wróć' or nazwa == 'cofnij' or nazwa == 'anuluj':
+                return 0
+            elif nazwa == "":
+                mow("Nie zrozumiałam, powtórz")
+                licznik = 0
+            else:
+                nazwa2=nazwa
+                print(nazwa2)
+                do_usuniecia = wydarzenie_del(nazwa2)
+                odp = del1(do_usuniecia)
+                licznik = 1
+                if odp == 2:
+                    mow("Usunełam wydarzenie.")
+                    mow(nazwa)
+                    mow("Z twojego życia.")
+                    return 0
+
+                if odp == 1:
+                    mow("Nie znaleziono wydarzenia!")
+                    return 0
+
+                mow("Więcej niż jedno wydarzenie o tej nazwie")
+                print("Więcej niż jedno wydarzenie o tej nazwie")
+
+                if licznik == 1:
+                    mow("Czy usunąć wszystkie wydarzenia?")
+                    print("Czy usunąć wszystkie wydarzenia?")
+                    odp = sarmata("takinie")
+                    if odp == "wróć":
+                        usun()
+                    if odp == "tak":
+
+                        odp = del3(do_usuniecia)
+                        print("Usunełam wszystkie wydarzenia o nazwie {}.".format(nazwa))
+                        mow("Usunełam wszystkie wydarzenia.")
+                        mow(nazwa)
+                        mow("Z twojego życia.")
+
+                    else:
+                        licznik = 2
+                        if licznik == 2:
+                            mow("Sprecyzuj o któro wydarzenie ci chodzi ")
+                            print("Sprecyzuj o któro wydarzenie ci chodzi ")
+                            mow("Podaj datę")
+                            print("Podaj datę ")
+                            data = sarmata("daty")
+                            if data == '7777-77-77':
+                                licznik = 1
+                            elif data == '9999-99-99':
+                                return 0
+                            else:
+                                licznik = 3
+                                mow("Podaj godzinę rozpoczęcia")
+                                print("Podaj godzinę rozpoczęcia")
+                                h_start = sarmata("godziny")
+                                if h_start == "90:90:00":
+                                    licznik = 2
+                                elif h_start == "97:97:00":
+                                    return 0
+                                else:
+                                    do_usuniecia = wydarzenie_del(nazwa, data, h_start)
+                                    odp = del2(do_usuniecia)
+                                    if odp == 2:
+                                        mow("Usunełam wydarzenie ")
+                                        print("Usunełam wydarzenie o nazwie: {} z dnia {}, z godziny {}".format(nazwa,
+                                                                                                                data,
+                                                                                                                h_start))
+                                        mow(nazwa)
+                                        mow("Z twojego życia.")
+
+                                    if odp == 1:
+                                        mow("Nie znaleziono wydarzenia!")
 
 
-    if odp == 1:
-        mow("Nie znaleziono wydarzenia!")
-    if odp == 0:
-        mow("Więcej niż jedno wydarzenie o tej nazwie")
-        print("Więcej niż jedno wydarzenie o tej nazwie")
-        mow("Czy usunąć wszystkie wydarzenia?")
-        print("Czy usunąć wszystkie wydarzenia?")
-        odp = dictation()
-        if odp == "tak":
-            odp=del3(do_usuniecia)
-            print("Usunełam wszystkie wydarzenia o nazwie {}.".format(nazwa))
-            mow("Usunełam wszystkie wydarzenia.")
-            mow(nazwa)
-            mow("Z twojego życia.")
-
-        else:
-            mow("Sprecyzuj o któro wydarzenie ci chodzi ")
-            print("Sprecyzuj o któro wydarzenie ci chodzi ")
-            mow("Podaj datę")
-            print("Podaj datę ")
-            data = sarmata("daty")
-            mow("Podaj godzinę rozpoczęcia")
-            print("Podaj godzinę rozpoczęcia")
-            h_start = input()
-            do_usuniecia = wydarzenie_del(nazwa, data, h_start)
-            odp = del2(do_usuniecia)
-            if odp == 2:
-                mow("Usunełam wydarzenie ")
-                print("Usunełam wydarzenie o nazwie: {} z dnia {}, z godziny {}".format(nazwa,data,h_start))
-                mow(nazwa)
-                mow("Z twojego życia.")
-
-            if odp == 1:
-                mow("Nie znaleziono wydarzenia!")
 def sprawdz():
     mow('Podaj date')
     print("Podaj date")
@@ -455,6 +506,9 @@ def sarmata(grammar):
         if tekst == 'wróć':
             data = '7777-77-77'
             return data
+        elif tekst == 'anuluj':
+            data = '9999-99-99'
+            return data
         else:
             def find_month(tekst):
                 miesiace = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia',
@@ -523,6 +577,9 @@ def sarmata(grammar):
         elif "wróć" in odpowiedzi:
             minuty = str(90)
             godziny = str(90)
+        elif "anuluj" in odpowiedzi:
+            minuty = str(97)
+            godziny = str(97)
 
         elif "za" in odpowiedzi:
             if len(odpowiedzi) == 5:
@@ -707,11 +764,11 @@ def dictation():
                 else:
                     return response['transcript']
 
+
+
 #main
-def main():
-
-    def polecenia():
-
+def maly_main():
+        mow('Co mogę dla ciebie zrobic?')
         odp = sarmata("main")
 
         if odp == 'dodaj':
@@ -722,24 +779,23 @@ def main():
             sprawdz()
         if odp == 'edytuj':
             edytuj()
-        else:
+        elif odp == 'zakończ':
+            sys.exit()
+        elif odp == '':
             mow('Nie zrozumiałam, powtórz polecenie')
-            polecenia()
+            maly_main()
+        else:
+            maly_main()
+
+def main():
     autoryzacja()
     mow('Witaj! Pozwól że pomogę Ci w organizacji twojego kalendarza')
-    mow('Co mogę dla ciebie zrobic?')
-    print('Witaj! co mogę dla ciebie zrobic?')
-    polecenia()
+    maly_main()
 
 
+#main()
 
-
-
-#edytuj()
-
-#sarmata("godziny")
-
-edytuj()
+usun()
 
 
 

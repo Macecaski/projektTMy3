@@ -6,7 +6,7 @@ tag-format <semantics/1.0-literals>;
 
 $root = $wykonaj;
 
-$wykonaj = $dodaj | $usuń | $sprawdź | $edytuj | przełóż {przełóż};
+$wykonaj = $dodaj | $usuń | $sprawdź | $edytuj | przełóż {przełóż} | zakończ {zakończ};
 
 $dodaj = (dodaj | utwórz | dorzuć | stwórz | zrób | wpisz | wrzuć | zapisz) {dodaj};
 
@@ -15,3 +15,5 @@ $usuń = (usuń | anuluj | wyrzuć | odwołaj | skasuj | zlikwiduj | skreśl) {u
 $sprawdź = (sprawdź | odczytaj | przeczytaj | powiedz) {sprawdź};
 
 $edytuj = (edytuj | zmień | przetwórz | zredaguj | redaguj) {edytuj};
+
+$zakończ = zakończ {zakończ};

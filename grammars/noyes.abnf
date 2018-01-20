@@ -11,4 +11,4 @@ $odpowiedź = $tak | $nie;
 
 $tak = (tak | owszem | jak najbardziej | oczywiście | a jakże | jakżeby inaczej | nie inaczej | ma się rozumieć | jeszcze jak) {tak};
 
-$nie = (nie | chyba żartujesz | chyba kpisz | panie co pan | broń Boże | ależ skąd | absolutnie nie | jeszcze czego | myślałby kto | uchowaj Boże | pod żadnym pozorem | nie ma mowy | wykluczone | nawet o tym nie myśl) {nie}
+$nie = (nie | chyba żartujesz | chyba kpisz | panie co pan | broń Boże | ależ skąd | absolutnie nie | jeszcze czego | myślałby kto | uchowaj Boże | pod żadnym pozorem | nie ma mowy | wykluczone | nawet o tym nie myśl) {nie};

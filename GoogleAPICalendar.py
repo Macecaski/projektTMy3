@@ -5,7 +5,8 @@ from googleapiclient.discovery import build
 from oauth2client import client, tools
 from oauth2client.file import Storage
 import sys
-from main import mow
+
+
 sys.path.insert(1, '/Library/Python/2.7/site-packages')
 
 

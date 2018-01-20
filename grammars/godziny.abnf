@@ -4,7 +4,7 @@ mode voice;
 root $root;
 tag-format <semantics/1.0-literals>;
 
-$root = $godzina | ($godzina $minuta) | ($godzina $minuta $minuta) | ($godzina $godzina) | ($godzina $godzina $minuta) | ($godzina $godzina $minuta $minuta) | ($minuta $po $godzina) | ($minuta $minuta $po $godzina) | ($minuta $po $godzina $godzina) | ($minuta $minuta $po $godzina $godzina) | ($wpółdo $godz1) | ($wpółdo $godzina $godz1) | ($godz2 $po $południu) | ($godz2 $minuta $po $południu) | ($godz2 $minuta $minuta $po $południu) | ($za $minuta $godz1) | ($za $minuta $godzina $godz1) | ($za $minuta $minuta $godz1) | ($za $minuta $minuta $godzina $godz1) | ($cały $dzień) | $wróć;
+$root = $godzina | ($godzina $minuta) | ($godzina $minuta $minuta) | ($godzina $godzina) | ($godzina $godzina $minuta) | ($godzina $godzina $minuta $minuta) | ($minuta $po $godzina) | ($minuta $minuta $po $godzina) | ($minuta $po $godzina $godzina) | ($minuta $minuta $po $godzina $godzina) | ($wpółdo $godz1) | ($wpółdo $godzina $godz1) | ($godz2 $po $południu) | ($godz2 $minuta $po $południu) | ($godz2 $minuta $minuta $po $południu) | ($za $minuta $godz1) | ($za $minuta $godzina $godz1) | ($za $minuta $minuta $godz1) | ($za $minuta $minuta $godzina $godz1) | ($cały $dzień) | $wróć | $anuluj;
 
 
 $godzina = północy {0} | (pierwsza | pierwszej) {1} | (druga | drugiej) {2} | (trzecia | trzeciej) {3} | (czwarta | czwartej) {4} | (piąta | piątej) {5} | (szósta | szóstej) {6} | (siódma | siódmej) {7} | (ósma | ósmej) {8} | (dziewiąta | dziewiątej) {9} | (dziesiąta | dziesiątej) {10} | (jedenasta | jedenastej) {11} | (dwunasta | dwunastej | południe) {12} | (trzynasta | trzynastej) {13} | (czternasta | czternastej) {14} | (piętnasta | piętnastej) {15} | (szesnasta | szesnastej) {16} | (siedemnasta | siedemnastej) {17} | (osiemnasta | osiemnastej) {18} | (dziewiętnasta | dziewiętnastej) {19} | (dwudziesta | dwudziestej) {20};
@@ -22,3 +22,4 @@ $za = za {za};
 $cały = cały {cały};
 $dzień = dzień {dzień};
 $wróć = (wróć | cofnij) {wróć};
+$anuluj = (anuluj | wyjdź | zamknij | zakończ) {anuluj};

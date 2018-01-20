@@ -4,7 +4,7 @@ mode voice;
 root $root;
 tag-format <semantics/1.0-literals>;
 
-$root = ($dzień1 $miesiąc $rok) | ($dzień2 $dzień2 $miesiąc $rok) | ($wróć);
+$root = ($dzień1 $miesiąc $rok) | ($dzień2 $dzień2 $miesiąc $rok) | ($wróć) | $anuluj;
 
 $dzień1 = pierwszy {01} | drugi {02} | trzeci {03} | czwarty {04} | piąty {05} | szósty {06} | siódmy {07} | ósmy {08} | dziewiąty {09} | dziesiąty {10} | jedenasty {11} | dwunasty {12} | trzynasty{13} | czternasty{14} | piętnasty {15} | szesnasty {16} | siedemnasty {17} | osiemnasty {18} | dziewietnasty {19} | dwudziesty {20} | trzydziesty {30};
 $dzień2 = pierwszy {1} | drugi {2} | trzeci {3} | czwarty {4} | piąty {5} | szósty {6} | siódmy {7} | ósmy {8} | dziewiąty {9} | dwudziesty {2} | trzydziesty {3};
@@ -34,3 +34,5 @@ $dziesiątki2 = dziesiątego {10} | jedenastego{11} | dwunastego {12} | trzynast
 $jednostki = pierwszego {1} | drugiego {2} | trzeciego {3} | czwartego {4} | piątego {5} | szóstego {6}| siódmego {7} | ósmego {8} | dziewiątego {9};
 
 $wróć = (wróć | cofnij) {wróć};
+
+$anuluj = (anuluj | wyjdź | zamknij | zakończ)  {anuluj};
