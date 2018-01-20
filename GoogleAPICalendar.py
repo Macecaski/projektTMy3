@@ -5,6 +5,7 @@ from googleapiclient.discovery import build
 from oauth2client import client, tools
 from oauth2client.file import Storage
 import sys
+from main import mow
 sys.path.insert(1, '/Library/Python/2.7/site-packages')
 
 
@@ -56,12 +57,12 @@ def check(data):
         calendarId='primary', timeMin='{}T00:00:00+01:00'.format(data),timeMax='{}T23:59:59+01:00'.format(data), maxResults=50, singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
-
     if not events:
         print('Żadnych wydarzeń!')
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
         print(start, event['summary'])
+        mow(event['summary'])
 def add(wydarzenie):
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
