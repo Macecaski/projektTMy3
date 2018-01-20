@@ -1,0 +1,24 @@
+#ABNF 1.0;
+language pl-pl;
+mode voice;
+root $root;
+tag-format <semantics/1.0-literals>;
+
+$root = $godzina | ($godzina $minuta) | ($godzina $minuta $minuta) | ($godzina $godzina) | ($godzina $godzina $minuta) | ($godzina $godzina $minuta $minuta) | ($minuta $po $godzina) | ($minuta $minuta $po $godzina) | ($minuta $po $godzina $godzina) | ($minuta $minuta $po $godzina $godzina) | ($wpółdo $godz1) | ($wpółdo $godzina $godz1) | ($godz2 $po $południu) | ($godz2 $minuta $po $południu) | ($godz2 $minuta $minuta $po $południu) | ($za $minuta $godz1) | ($za $minuta $godzina $godz1) | ($za $minuta $minuta $godz1) | ($za $minuta $minuta $godzina $godz1) | ($cały $dzień) | $wróć;
+
+
+$godzina = północy {0} | (pierwsza | pierwszej) {1} | (druga | drugiej) {2} | (trzecia | trzeciej) {3} | (czwarta | czwartej) {4} | (piąta | piątej) {5} | (szósta | szóstej) {6} | (siódma | siódmej) {7} | (ósma | ósmej) {8} | (dziewiąta | dziewiątej) {9} | (dziesiąta | dziesiątej) {10} | (jedenasta | jedenastej) {11} | (dwunasta | dwunastej | południe) {12} | (trzynasta | trzynastej) {13} | (czternasta | czternastej) {14} | (piętnasta | piętnastej) {15} | (szesnasta | szesnastej) {16} | (siedemnasta | siedemnastej) {17} | (osiemnasta | osiemnastej) {18} | (dziewiętnasta | dziewiętnastej) {19} | (dwudziesta | dwudziestej) {20};
+
+$godz1 = (pierwsza | pierwszej) {0} | (druga | drugiej) {1} | (trzecia | trzeciej) {2} | (czwarta | czwartej) {3} | (piąta | piątej) {4} | (szósta | szóstej) {5} | (siódma | siódmej) {6} | (ósma | ósmej) {7} | (dziewiąta | dziewiątej) {8} | (dziesiąta | dziesiątej) {9} | (jedenasta | jedenastej) {10} | (dwunasta | dwunastej | południe) {11} | (trzynasta | trzynastej) {12} | (czternasta | czternastej) {13} | (piętnasta | piętnastej) {14} | (szesnasta | szesnastej) {15} | (siedemnasta | siedemnastej) {16} | (osiemnasta | osiemnastej) {17} | (dziewiętnasta | dziewiętnastej) {18} | (dwudziesta | dwudziestej) {19} | północ {23};
+$godz2 = (pierwsza | pierwszej) {13} | (druga | drugiej) {14} | (trzecia | trzeciej) {15} | (czwarta | czwartej) {16} | (piąta | piątej) {17} | (szósta | szóstej) {18} | (siódma | siódmej) {19} | (ósma | ósmej) {20} | (dziewiąta | dziewiątej) {21} | (dziesiąta | dziesiątej) {22} | (jedenasta | jedenastej) {23} ;
+$minuta = jeden {1m} | dwa {2m}| trzy {3m} | cztery{4m} | pięć {5m} | sześć {6m} | siedem {7m}| osiem {8m}| dziewięć {9m}| dziesięć{10m} | jedenaście {11m} | dwanaście {12m} | trzynaście {13m} | czternaście {14m} | (piętnaście | kwadrans) {15m} | szesnaście {16m} | siedemnaście {17m} | osiemnaście {18m} | dziewiętnaście {19m} | dwadzieścia {20m} | trzydzieści {30m} | czterdzieści {40m} | pięćdziesiąt {50m};
+
+$po = po {po};
+
+$wpółdo = w pół do {30m};
+$południu = południu {południu};
+$za = za {za};
+
+$cały = cały {cały};
+$dzień = dzień {dzień};
+$wróć = (wróć | cofnij) {wróć};

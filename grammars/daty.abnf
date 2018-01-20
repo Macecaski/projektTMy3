@@ -1,0 +1,36 @@
+#ABNF 1.0;
+language pl-pl;
+mode voice;
+root $root;
+tag-format <semantics/1.0-literals>;
+
+$root = ($dzień1 $miesiąc $rok) | ($dzień2 $dzień2 $miesiąc $rok) | ($wróć);
+
+$dzień1 = pierwszy {01} | drugi {02} | trzeci {03} | czwarty {04} | piąty {05} | szósty {06} | siódmy {07} | ósmy {08} | dziewiąty {09} | dziesiąty {10} | jedenasty {11} | dwunasty {12} | trzynasty{13} | czternasty{14} | piętnasty {15} | szesnasty {16} | siedemnasty {17} | osiemnasty {18} | dziewietnasty {19} | dwudziesty {20} | trzydziesty {30};
+$dzień2 = pierwszy {1} | drugi {2} | trzeci {3} | czwarty {4} | piąty {5} | szósty {6} | siódmy {7} | ósmy {8} | dziewiąty {9} | dwudziesty {2} | trzydziesty {3};
+
+$miesiąc = stycznia {stycznia} | lutego {lutego} | marca {marca} | kwietnia {kwietnia} | maja {maja} | czerwca {czerwca} | lipca {lipca} | sierpnia {sierpnia} | września {września} | października {października} | listopada {listopada} | grudnia {grudnia};
+
+$rok = $tysiące1 | $tysiące2 $setki1 $dziesiątki1 $jednostki | $tysiące2 $setki3 | $tysiące4 $jednostki | $tysiące3 $dziesiątki2 | $tysiące2 $setki1 $dziesiątki2 | $tysiące2 $setki2 $jednostki | $tysiące3 $dziesiątki1 $jednostki;
+
+$tysiące1 = tysięcznego {1000} | dwutysięcznego {2000};
+
+$tysiące2 = tysiąc {1} | dwatysiące {2};
+
+$tysiące3 = tysiąc {10}| dwatysiące {20};
+
+$tysiące4 = tysiąc{100}| dwatysiące {200};
+
+$setki1 = sto {1} | dwieście {2} | trzysta {3} | czterysta {4} | pięćset {5} | sześćset {6} | siedemset {7} | osiemset{8} | dziewięćset {9};
+
+$setki2 = sto {10} | dwieście {20} | trzysta {30} | czterysta {40} | pięćset {50} | sześćset {60} | siedemset {70} | osiemset {80} | dziewięćset {90};
+
+$setki3 = setnego {100} | dwusetnego {200} | trzysetnego {300} | czterysetnego {400} | pięćsetnego {500} | sześćsetnego {600} | siedemsetnego {700} | osiemsetnego{800} | dziewięćsetnego {900};
+
+$dziesiątki1 = dwudziestego {2}| trzydziestego {3} | czterdziestego {4} | pięćdziesiątego {5} | sześćdziesiątego {6}| siedemdziesiątego {7}| osiemdziesiątego {8} | dziewięćdziesiątego {9};
+
+$dziesiątki2 = dziesiątego {10} | jedenastego{11} | dwunastego {12} | trzynastego {13} | czternastego {14} | piętnastego {15} | szesnastego {16} | siedemnastego {17} |osiemnastego {18} | dziewietnastego {19} | dwudziestego {20} | trzydziestego {30} |czterdziestego {40} | pięćdziesiątego {50} | sześćdziesiątego {60} | siedemdziesiątego {70} | osiemdziesiątego {80} |dziewięćdziesiątego {90};
+
+$jednostki = pierwszego {1} | drugiego {2} | trzeciego {3} | czwartego {4} | piątego {5} | szóstego {6}| siódmego {7} | ósmego {8} | dziewiątego {9};
+
+$wróć = (wróć | cofnij) {wróć};

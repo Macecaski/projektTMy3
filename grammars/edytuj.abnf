@@ -1,0 +1,23 @@
+#ABNF 1.0;
+language pl-pl;
+mode voice;
+root $root;
+tag-format <semantics/1.0-literals>;
+
+
+$root = $zmiana | ($zmiana $zmiana) | ($zmiana $zmiana $zmiana) | ($zmiana $zmiana $zmiana $zmiana) | ($zmiana $zmiana $zmiana $zmiana $zmiana) | ($zmiana $i $zmiana) | ($zmiana $zmiana $i $zmiana) | ($zmiana $zmiana $zmiana $i $zmiana) | ($zmiana $zmiana $zmiana $zmiana $i $zmiana);
+
+$zmiana = $nazwa | $godzina | $data | $lokalizacja | $opis;
+
+
+$nazwa = (nazwa | nazwę | tytuł ) {nazwa};
+
+$godzina = (godzinę | godzinę | czas) {godzina};
+
+$data  = (data | datę | dzień | miesiąc | rok) {data};
+
+$lokalizacja = (lokalizacja | lokalizację | miejsce | adres) {lokalizacja};
+
+$opis = (opis) {opis};
+
+$i = i {i};

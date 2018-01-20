@@ -1,0 +1,11 @@
+#ABNF 1.0;
+language pl-pl;
+mode voice;
+root $root;
+tag-format <semantics/1.0-literals>;
+
+
+$root = $no | $yes;
+
+$no = (nie | odmawiam) {nie};
+$yes = (tak | poproszę | poprosze | zgadzam się | wyrażam zgodę) {tak};
